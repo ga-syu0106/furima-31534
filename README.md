@@ -26,19 +26,17 @@
 | name             | string     | null: false                    |
 | explanation      | text       | null: false                    |
 | category_id      | integer    | null: false                    |
-| brand            | string     | null: false                    |
 | state_id         | integer    | null: false                    |
 | delivery_free_id | integer    | null: false                    |
-| shopping_area_id | integer    | null: false                    |
+| prefectures_id   | integer    | null: false                    |
 | days_ship_id     | integer    | null: false                    |
 | price            | integer    | null: false                    |
 | user             | references | null: false, foreign_key: true |
 
 ### Association
 
-- has_many :trades
+- has_one :trade
 - belongs_to :user
-- belongs_to :address
 
 
 ## tradesテーブル
@@ -52,20 +50,21 @@
 
 - belongs_to :user
 - belongs_to :item
+- has_one :address
 
 
 ## addresssテーブル
 
-| Column        | Type       | Options                        |
-| ------------- | ----       | ------------------------------ |
-| postal_code   | string     | null: false                    |
-| prefectures   | integer    | null: false                    |
-| municipality  | string     | null: false                    |
-| address       | string     | null: false                    |
-| building_name | string     |                                |
-| phone_number  | string     | null: false                    |
-| item          | references | null: false, foreign_key: true |
+| Column          | Type       | Options                        |
+| --------------- | ----       | ------------------------------ |
+| postal_code     | string     | null: false                    |
+| prefectures_id  | integer    | null: false                    |
+| municipality    | string     | null: false                    |
+| address         | string     | null: false                    |
+| building_name   | string     |                                |
+| phone_number    | string     | null: false                    |
+| trade           | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :item
+- belongs_to :trade
