@@ -12,6 +12,7 @@ class Item < ApplicationRecord
   end
 
   has_one_attached :image
+  belomgs_to :user
   
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
