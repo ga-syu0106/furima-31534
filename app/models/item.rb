@@ -7,13 +7,15 @@ class Item < ApplicationRecord
     validates :delivery_free_id
     validates :prefecture_id
     validates :days_ship_id
-    validates :price , numericality:{greater_than: 300 , less_than:9999999 ,only_integer: true ,message:"半角数字で300円〜9,999,999円の間で入力ください"}
+    validates :price,
+              numericality: { greater_than: 300, less_than: 9_999_999, only_integer: true,
+                              message: '半角数字で300円〜9,999,999円の間で入力ください' }
     validates :image
   end
 
   has_one_attached :image
   belongs_to :user
-  
+
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :state
