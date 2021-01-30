@@ -40,6 +40,7 @@ class ItemsController < ApplicationController
       else
         render :show
       end
+        render :index
     end
   end
 
