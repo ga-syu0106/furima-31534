@@ -53,7 +53,7 @@
 - has_one :address
 
 
-## addresssテーブル
+## addressesテーブル
 
 | Column          | Type       | Options                        |
 | --------------- | ----       | ------------------------------ |
