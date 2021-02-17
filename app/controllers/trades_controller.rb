@@ -1,6 +1,7 @@
 class TradesController < ApplicationController
   before_action :find_item, only:[:index, :create]
-
+  before_action :check_trade, only:[:index, :create]
+  
   def index
     @trade_address = TradeAddress.new
   end
@@ -36,4 +37,9 @@ class TradesController < ApplicationController
       currency: 'jpy'
     )
   end
+
+  def check_trade
+    redirect_to root_path unless @item.trade == nil
+  end
+
 end
