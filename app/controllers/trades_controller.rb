@@ -8,11 +8,9 @@ class TradesController < ApplicationController
 
   def create
     @trade_address = TradeAddress.new(address_params)
-    binding.pry
     if @trade_address.valid?
       pay_item
       @trade_address.save
-      binding.pry
       redirect_to root_path
     else
       render action: :index
