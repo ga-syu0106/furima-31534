@@ -36,11 +36,11 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-      if @item.destroy
-        redirect_to root_path
-      else
-        render :show
-      end
+    if @item.destroy
+      redirect_to root_path
+    else
+      render :show
+    end
   end
 
   private
@@ -59,7 +59,6 @@ class ItemsController < ApplicationController
   end
 
   def check_trade
-    redirect_to root_path unless @item.trade == nil
+    redirect_to root_path unless @item.trade.nil?
   end
-  
 end

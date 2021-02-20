@@ -24,7 +24,6 @@
         <%= '配送料負担' %>
       </span>
     </div>
-
     <% if user_signed_in? %>
       <% if @item.user.id == current_user.id%>
         <% if @item.trade == nil %>

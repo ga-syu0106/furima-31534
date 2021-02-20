@@ -2,18 +2,18 @@ require 'rails_helper'
 
 RSpec.describe TradeAddress, type: :model do
   describe '商品の購入' do
-  before do
-    @user = FactoryBot.create(:user)
-    @item = FactoryBot.create(:item)
-    @trade_address = FactoryBot.build(:trade_address, user_id: @user.id, item_id: @item.id)
-    sleep 0.1
-  end
+    before do
+      @user = FactoryBot.create(:user)
+      @item = FactoryBot.create(:item)
+      @trade_address = FactoryBot.build(:trade_address, user_id: @user.id, item_id: @item.id)
+      sleep 0.1
+    end
 
     it '全てが正しく入力してあれば保存できること' do
       expect(@trade_address).to be_valid
     end
 
-    it 'トークンが空では保存できないこと'do
+    it 'トークンが空では保存できないこと' do
       @trade_address.token = nil
       @trade_address.valid?
       expect(@trade_address.errors.full_messages).to include("Token can't be blank")
@@ -26,15 +26,15 @@ RSpec.describe TradeAddress, type: :model do
     end
 
     it '郵便番号にハイフンが入力されていないと保存できないこと' do
-      @trade_address.postal_code = "1234567"
+      @trade_address.postal_code = '1234567'
       @trade_address.valid?
-      expect(@trade_address.errors.full_messages).to include("Postal code 半角数字のみで (-) も入力してください")
+      expect(@trade_address.errors.full_messages).to include('Postal code 半角数字のみで (-) も入力してください')
     end
 
     it '郵便番号は半角数字で入力されていないと保存できないこと' do
-      @trade_address.postal_code = "１２３-４５６７"
+      @trade_address.postal_code = '１２３-４５６７'
       @trade_address.valid?
-      expect(@trade_address.errors.full_messages).to include("Postal code 半角数字のみで (-) も入力してください")
+      expect(@trade_address.errors.full_messages).to include('Postal code 半角数字のみで (-) も入力してください')
     end
 
     it '都道府県が選択されていないと保存できないこと' do
@@ -69,13 +69,13 @@ RSpec.describe TradeAddress, type: :model do
     it '電話番号は半角数字でないと保存できないこと' do
       @trade_address.phone_number = '０９０１２３４５６７８'
       @trade_address.valid?
-      expect(@trade_address.errors.full_messages).to include("Phone number 半角数字で入力してください")
+      expect(@trade_address.errors.full_messages).to include('Phone number 半角数字で入力してください')
     end
 
     it '電話番号が11文字以内でないと保存できないこと' do
       @trade_address.phone_number = '0909123456789'
       @trade_address.valid?
-      expect(@trade_address.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
+      expect(@trade_address.errors.full_messages).to include('Phone number is too long (maximum is 11 characters)')
     end
 
     it '購入者情報が紐づいてないと保存できないこと' do
@@ -89,6 +89,5 @@ RSpec.describe TradeAddress, type: :model do
       @trade_address.valid?
       expect(@trade_address.errors.full_messages).to include("Item can't be blank")
     end
-
   end
 end

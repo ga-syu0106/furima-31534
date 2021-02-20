@@ -1,7 +1,7 @@
 class TradesController < ApplicationController
-  before_action :find_item, only:[:index, :create]
-  before_action :check_trade, only:[:index, :create]
-  
+  before_action :find_item, only: [:index, :create]
+  before_action :check_trade, only: [:index, :create]
+
   def index
     @trade_address = TradeAddress.new
   end
@@ -24,11 +24,13 @@ class TradesController < ApplicationController
   end
 
   def address_params
-    params.require(:trade_address).permit(:postal_code, :prefecture_id, :municipality, :address, :building_name, :phone_number).merge(token: params[:token], user_id: current_user.id, item_id: @item.id)
+    params.require(:trade_address).permit(:postal_code, :prefecture_id, :municipality, :address, :building_name, :phone_number).merge(
+      token: params[:token], user_id: current_user.id, item_id: @item.id
+    )
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: address_params[:token],
@@ -37,7 +39,6 @@ class TradesController < ApplicationController
   end
 
   def check_trade
-    redirect_to root_path unless @item.trade == nil
+    redirect_to root_path unless @item.trade.nil?
   end
-
 end
