@@ -75,6 +75,12 @@ RSpec.describe TradeAddress, type: :model do
         expect(@trade_address.errors.full_messages).to include('Phone number 半角数字で入力してください')
       end
 
+      it '電話番号は英数混合で入力されていると保存できないこと' do
+        @trade_address.phone_number = '090912345abc'
+        @trade_address.valid?
+        expect(@trade_address.errors.full_messages).to include('Phone number 半角数字で入力してください')
+      end
+
       it '電話番号が11文字以内でないと保存できないこと' do
         @trade_address.phone_number = '0909123456789'
         @trade_address.valid?
