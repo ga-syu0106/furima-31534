@@ -1,6 +1,7 @@
 class TradesController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :find_item, only: [:index, :create]
+  before_action :check_user, only: [:index, :create]
   before_action :check_trade, only: [:index, :create]
 
   def index
@@ -37,6 +38,10 @@ class TradesController < ApplicationController
       card: address_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def check_user
+    redirect_to root_path unless @item.user.id == current_user.id
   end
 
   def check_trade
