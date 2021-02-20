@@ -41,7 +41,7 @@ class TradesController < ApplicationController
   end
 
   def check_user
-    redirect_to root_path unless @item.user.id == current_user.id
+    redirect_to root_path unless @item.user.id != current_user.id
   end
 
   def check_trade
