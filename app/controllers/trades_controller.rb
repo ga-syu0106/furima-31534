@@ -1,4 +1,5 @@
 class TradesController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :create]
   before_action :find_item, only: [:index, :create]
   before_action :check_trade, only: [:index, :create]
 
