@@ -7,7 +7,7 @@ class TradeAddress
     validates :prefecture_id
     validates :municipality
     validates :address
-    validates :phone_number, numericality: {only_integer: true, length: { maximum: 11 }, message:"半角数字のみで11文字以内で入力してください"}
+    validates :phone_number, numericality: {only_integer: true, message:"半角数字で入力してください"}, length: { maximum: 11 }
     validates :user_id
     validates :item_id
   end
