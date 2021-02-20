@@ -1,7 +1,7 @@
 class TradeAddress
   include ActiveModel::Model
   attr_accessor :token, :postal_code, :prefecture_id, :municipality, :address, :building_name, :phone_number, :user_id,
-                :item_id, :trade_id
+                :item_id
 
   with_options presence: true do
     validates :token
